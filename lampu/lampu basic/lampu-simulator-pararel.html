@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<script src="js/jquery-1.12.0.min.js"></script>
+<style>
+#saklar_hidup{
+background-color:red;
+color:white;
+}
+#saklar_mati{
+background-color:green;
+color:white;
+}
+</style>
+</head>
+<body>
+	<div class="row">
+	<h1>Simulasi bola lampu pararel dengan control button on dan off</h1>
+	</div>
+	<div id="container" class="container">
+		<div class="row">
+			<div class="lampu">
+				<div class="row">
+					<div id="bola-lampu-1" class="bola-lampu-mati">
+					</div>
+				</div>
+				<div class="row">
+					<div class="gagang-lampu">
+						<div class="arsir-gagang-lampu">
+						</div>
+						<div class="arsir-gagang-lampu">
+						</div>
+						<div class="ujung-arsir-gagang-lampu">
+						</div>
+					</div>
+				</div>
+			</div>	
+			
+			<div id="lampu" class="lampu">
+				<div class="row">
+					<div id='bola-lampu-2' class="bola-lampu-mati">
+					</div>
+				</div>
+				<div class="row">
+					<div class="gagang-lampu">
+						<div class="arsir-gagang-lampu">
+						</div>
+						<div class="arsir-gagang-lampu">
+						</div>
+						<div class="ujung-arsir-gagang-lampu">
+						</div>
+					</div>
+				</div>
+			</div>	
+			
+		</div>
+		<div class ="row">
+			<div id="saklar_hidup" class ="saklar" onclick="lampuhidup();">
+					On
+			</div>
+			<div id="saklar_mati" class ="saklar" onclick="lampumati();">
+					Off
+			</div>
+		</div>
+	</div>
+</body>
+<script>
+function lampuhidup(){
+//alert('test');
+ $("#bola-lampu-1").addClass("bola-lampu-hidup");
+ $("#bola-lampu-2").addClass("bola-lampu-hidup");
+ 
+}
+function lampumati(){
+//alert('test');
+//$("#bola-lampu").removeClass("bola-lampu-hidup");
+ $("#bola-lampu-1").removeClass("bola-lampu-hidup");
+ $("#bola-lampu-2").removeClass("bola-lampu-hidup");
+}
+</script>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" type="text/css" href="css/style.css"/>
+<script src="js/jquery-1.12.0.min.js"></script>
+<style>
+#saklar_hidup{
+background-color:red;
+color:white;
+}
+#saklar_mati{
+background-color:green;
+color:white;
+}
+</style>
+</head>
+<body>
+	<div class="row">
+	<h5>Simulasi bola lampu flip-flop 2 lampu dengan control button on dan off</h5>
+	<h5>By alimin</h5>
+	</div>
+	<div id="container" class="container">
+		<div class="row">
+			<div class="lampu">
+				<div class="row">
+					<div id="bola-lampu-1" class="bola-lampu-merah">
+					</div>
+				</div>
+				<div class="row">
+					<div class="gagang-lampu">
+						<div class="arsir-gagang-lampu">
+						</div>
+						<div class="arsir-gagang-lampu">
+						</div>
+						<div class="ujung-arsir-gagang-lampu">
+						</div>
+					</div>
+				</div>
+			</div>	
+			
+			<div id="lampu" class="lampu">
+				<div class="row">
+					<div id='bola-lampu-2' class="bola-lampu-hijau">
+					</div>
+				</div>
+				<div class="row">
+					<div class="gagang-lampu">
+						<div class="arsir-gagang-lampu">
+						</div>
+						<div class="arsir-gagang-lampu">
+						</div>
+						<div class="ujung-arsir-gagang-lampu">
+						</div>
+					</div>
+				</div>
+			</div>	
+			
+			<div class="lampu">
+				<div class="row">
+					<div id="bola-lampu-3" class="bola-lampu-kuning">
+					</div>
+				</div>
+				<div class="row">
+					<div class="gagang-lampu">
+						<div class="arsir-gagang-lampu">
+						</div>
+						<div class="arsir-gagang-lampu">
+						</div>
+						<div class="ujung-arsir-gagang-lampu">
+						</div>
+					</div>
+				</div>
+			</div>	
+			
+			<div id="lampu" class="lampu">
+				<div class="row">
+					<div id='bola-lampu-4' class="bola-lampu-biru">
+					</div>
+				</div>
+				<div class="row">
+					<div class="gagang-lampu">
+						<div class="arsir-gagang-lampu">
+						</div>
+						<div class="arsir-gagang-lampu">
+						</div>
+						<div class="ujung-arsir-gagang-lampu">
+						</div>
+					</div>
+				</div>
+			</div>	
+			
+		</div>
+		<div class ="row">
+			<div id="saklar_hidup" class ="saklar" onclick="on(1);">
+					On
+			</div>
+			<div id="saklar_mati" class ="saklar" onclick="off();">
+					Off
+			</div>
+		</div>
+	</div>
+	<h5 id="count"><h5>
+</body>
+<script>
+var timer;
+function lampumerahhidup(){
+ $("#bola-lampu-1").addClass("bola-lampu-merah-nyala");
+}
+
+function lampumerahmati(){
+	$("#bola-lampu-1").removeClass("bola-lampu-merah-nyala");
+}
+
+function lampuhijauhidup(){
+	$("#bola-lampu-2").addClass("bola-lampu-hijau-nyala");
+}
+
+function lampuhijaumati(){
+	$("#bola-lampu-2").removeClass("bola-lampu-hijau-nyala");
+}
+
+function lampumati(){
+	$("#bola-lampu-1").removeClass("bola-lampu-merah-nyala");
+}
+function on(){
+  timer = setInterval(run, 100)
+}
+var count=0;
+function run(){
+ if(count >= 5){
+  lampuhijaumati();
+  lampumerahhidup();
+  }
+  if(count >= 10){
+	lampumerahmati();
+	lampuhijauhidup();
+	count=0;
+  }
+    count =count +1;
+  $("#count").text(count);
+}
+
+function off(){
+clearInterval(timer);
+timer=null;
+}
+
+</script>
+</html>
