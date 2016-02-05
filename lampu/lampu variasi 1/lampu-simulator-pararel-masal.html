@@ -20,76 +20,10 @@ color:white;
 	<h5>Simulasi bola lampu flip-flop 2 lampu dengan control button on dan off</h5>
 	<h5>By alimin</h5>
 	</div>
-	<div id="container" class="container">
-		<div class="row">
-			<div class="lampu">
-				<div class="row">
-					<div id="bola-lampu-1" class="bola-lampu-merah">
-					</div>
-				</div>
-				<div class="row">
-					<div class="gagang-lampu">
-						<div class="arsir-gagang-lampu">
-						</div>
-						<div class="arsir-gagang-lampu">
-						</div>
-						<div class="ujung-arsir-gagang-lampu">
-						</div>
-					</div>
-				</div>
-			</div>	
-			
-			<div id="lampu" class="lampu">
-				<div class="row">
-					<div id='bola-lampu-2' class="bola-lampu-hijau">
-					</div>
-				</div>
-				<div class="row">
-					<div class="gagang-lampu">
-						<div class="arsir-gagang-lampu">
-						</div>
-						<div class="arsir-gagang-lampu">
-						</div>
-						<div class="ujung-arsir-gagang-lampu">
-						</div>
-					</div>
-				</div>
-			</div>	
-			
-			<div class="lampu">
-				<div class="row">
-					<div id="bola-lampu-3" class="bola-lampu-kuning">
-					</div>
-				</div>
-				<div class="row">
-					<div class="gagang-lampu">
-						<div class="arsir-gagang-lampu">
-						</div>
-						<div class="arsir-gagang-lampu">
-						</div>
-						<div class="ujung-arsir-gagang-lampu">
-						</div>
-					</div>
-				</div>
-			</div>	
-			
-			<div id="lampu" class="lampu">
-				<div class="row">
-					<div id='bola-lampu-4' class="bola-lampu-biru">
-					</div>
-				</div>
-				<div class="row">
-					<div class="gagang-lampu">
-						<div class="arsir-gagang-lampu">
-						</div>
-						<div class="arsir-gagang-lampu">
-						</div>
-						<div class="ujung-arsir-gagang-lampu">
-						</div>
-					</div>
-				</div>
-			</div>	
-			
+		    <div id="container" class="container" id="container">
+		
+				
+			</div>		
 		</div>
 		<div class ="row">
 			<div id="saklar_hidup" class ="saklar" onclick="on(1);">
@@ -102,11 +36,48 @@ color:white;
 	</div>
 	<h5 id="count"><h5>
 </body>
+
 <script>
-var timer;
-function lampumerahhidup(){
- $("#bola-lampu-1").addClass("bola-lampu-merah-nyala");
+//parameter digunakan untuk menentukan properti warna secara mandiri
+function buat_lampu(arrproperty){
+//alert(arrproperty.key[0]);
+var html_string='\n'+
+				'<div class="lampu">\n'+
+                '<div class="row">\n'+
+				'<div class="row">\n'+
+					'<div id="bola-lampu'+arrproperty.key[0]+'" class="bola-lampu">\n'+
+					'</div>\n'+
+				'</div>\n'+
+				'<div class="row">\n'+
+					'<div class="gagang-lampu">\n'+
+						'<div class="arsir-gagang-lampu">\n'+
+						'</div>\n'+
+						'<div class="arsir-gagang-lampu">\n'+
+						'</div>\n'+
+						'<div class="ujung-arsir-gagang">\n'+
+						'</div>\n'+
+					'</div>\n'+
+				'</div>\n'+  
+				'</div>\n'+
+				'</div>\n'+ 
+				'';
+				
+			return html_string;
 }
+
+var colors=['aqua', 'black', 'blue', 'fuchsia', 'gray', 'green', 
+'lime', 'maroon', 'navy', 'olive', 'orange', 'purple', 'red', 
+'silver', 'teal', 'white', 'yellow'];
+//alert(myMap.key[0]);
+function buatlampu(){
+for (var i=0; i <= colors.length; i++){
+var mapproperty = { key: [i,colors[i]] };
+$("#container").append(buat_lampu(mapproperty));
+ $("#bola-lampu"+i).css("background-color",colors[i]);
+}
+}
+buatlampu();
+
 
 function lampumerahmati(){
 	$("#bola-lampu-1").removeClass("bola-lampu-merah-nyala");
@@ -123,22 +94,26 @@ function lampuhijaumati(){
 function lampumati(){
 	$("#bola-lampu-1").removeClass("bola-lampu-merah-nyala");
 }
+var timer
 function on(){
   timer = setInterval(run, 100)
 }
-var count=0;
+var count=colors.length-1;
+var count1=0;
 function run(){
- if(count >= 5){
-  lampuhijaumati();
-  lampumerahhidup();
-  }
-  if(count >= 10){
-	lampumerahmati();
-	lampuhijauhidup();
-	count=0;
-  }
-    count =count +1;
-  $("#count").text(count);
+if(count == 1){
+// alert(color[count1]);
+count=colors.length-1;
+count1=0;
+ $("#bola-lampu"+count).css("background-color",colors[count]);
+
+}
+if(count1 <= colors.length-1){
+  $("#bola-lampu"+count1).css("background-color",colors[count]);
+}
+	count --;
+	count1 ++;
+  $("#count").text(count1);
 }
 
 function off(){
