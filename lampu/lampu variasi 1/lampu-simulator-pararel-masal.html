@@ -5,6 +5,9 @@
 <link rel="stylesheet" type="text/css" href="css/style.css"/>
 <script src="js/jquery-1.12.0.min.js"></script>
 <style>
+h5{
+background-color:black;
+}
 #saklar_hidup{
 background-color:red;
 color:white;
@@ -12,6 +15,13 @@ color:white;
 #saklar_mati{
 background-color:green;
 color:white;
+}
+body{
+background-color:black;
+color:white;
+}
+.container{
+background-color:black;
 }
 </style>
 </head>
@@ -35,17 +45,21 @@ color:white;
 		</div>
 	</div>
 	<h5 id="count"><h5>
+	<h5 style="color:red;" id="count2"><h5>
 </body>
 
 <script>
 //parameter digunakan untuk menentukan properti warna secara mandiri
-function buat_lampu(arrproperty){
-//alert(arrproperty.key[0]);
+var pesan=["s","i","m","u","l","a","s","i","l","a","m","p","u","h","i","a","s"," "];
+//alert(pesan[0]);
+function buat_lampu(arrproperty,message){
+//alert(message);
 var html_string='\n'+
 				'<div class="lampu">\n'+
                 '<div class="row">\n'+
 				'<div class="row">\n'+
 					'<div id="bola-lampu'+arrproperty.key[0]+'" class="bola-lampu">\n'+
+						message.toUpperCase()+'\n'+
 					'</div>\n'+
 				'</div>\n'+
 				'<div class="row">\n'+
@@ -69,56 +83,50 @@ var colors=['aqua', 'black', 'blue', 'fuchsia', 'gray', 'green',
 'lime', 'maroon', 'navy', 'olive', 'orange', 'purple', 'red', 
 'silver', 'teal', 'white', 'yellow'];
 //alert(myMap.key[0]);
-function buatlampu(){
-for (var i=0; i <= colors.length; i++){
-var mapproperty = { key: [i,colors[i]] };
-$("#container").append(buat_lampu(mapproperty));
- $("#bola-lampu"+i).css("background-color",colors[i]);
+function dobuatlampu(){
+//alert(1);
+	for (var i=0; i <= colors.length-1; i++){
+		var mapproperty = { key: [i,colors[i]] };
+		$("#container").append(buat_lampu(mapproperty,pesan[i]));
+		$("#bola-lampu"+i).css("background-color",colors[i]);
+	}
 }
-}
-buatlampu();
-
-
-function lampumerahmati(){
-	$("#bola-lampu-1").removeClass("bola-lampu-merah-nyala");
-}
-
-function lampuhijauhidup(){
-	$("#bola-lampu-2").addClass("bola-lampu-hijau-nyala");
-}
-
-function lampuhijaumati(){
-	$("#bola-lampu-2").removeClass("bola-lampu-hijau-nyala");
-}
-
-function lampumati(){
-	$("#bola-lampu-1").removeClass("bola-lampu-merah-nyala");
-}
+dobuatlampu();
 var timer
 function on(){
-  timer = setInterval(run, 100)
+  timer = setInterval(run, 100);
 }
 var count=colors.length-1;
 var count1=0;
-function run(){
-if(count == 1){
-// alert(color[count1]);
-count=colors.length-1;
-count1=0;
- $("#bola-lampu"+count).css("background-color",colors[count]);
-
-}
-if(count1 <= colors.length-1){
-  $("#bola-lampu"+count1).css("background-color",colors[count]);
-}
-	count --;
-	count1 ++;
-  $("#count").text(count1);
-}
+var count2=0;
+	function run(){
+		if(count == 0){
+			count=colors.length;
+			count1=0;
+			//$("#bola-lampu"+count).css("background-color",colors[count]);
+		}
+	
+	if(count1 <= colors.length-1){
+		$("#bola-lampu"+count1).css("background-color",colors[count]);
+		$("#bola-lampu"+count).css("color",colors[count]);
+		
+	}
+	
+	if(count2==16){
+		$("#container").empty();
+		dobuatlampu();
+		count2=0;
+	}
+		count --;
+		count1 ++;
+		count2 ++;
+		$("#count").text(count1);
+		$("#count2").text(count2);	
+	}
 
 function off(){
-clearInterval(timer);
-timer=null;
+	clearInterval(timer);
+	timer=null;
 }
 
 </script>
